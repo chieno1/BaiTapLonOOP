@@ -379,7 +379,10 @@ class QuanLyGiaoDich
 			line();
 		}
 		
-		
+		void clear()
+		{
+			giaoDich.clear();
+		}
 };
 
 void Menu()
@@ -419,6 +422,7 @@ void Menu()
 			do{
 				cin >> n;
 			}while(n < 0);
+			core.clear();
 			core.nhapDanhSach(n);
 			break;
 		case 2:
