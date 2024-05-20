@@ -124,7 +124,8 @@ class GiaoDichVang : public GiaoDich
 							  << setw(15) << donGia << "|"
 							  << setw(15) << soLuong << "|"
 							  << setw(20) << thanhTien() << "|"
-							  << setw(20) << "Giao dich vang" << "|\n";;
+							  << setw(20) << "Giao dich vang"<<"|" 
+							  << setw(15) << loaiVang << "|\n";
 		}
 		double thanhTien()
 		{
@@ -192,7 +193,13 @@ class GiaoDichTien : public GiaoDich
 							  << setw(15) << donGia << "|"
 							  << setw(15) << soLuong << "|"
 							  << setw(20) << thanhTien() << "|"
-							  << setw(20) << "Giao dich tien" << "|\n";
+							  << setw(20) << "Giao dich tien"<<"|" ;
+			if(loaiTien == 1)
+							 cout << setw(15) <<  "VND"<< "|\n";
+			if(loaiTien == 2)
+							 cout << setw(15) <<  "EURO"<< "|\n";
+			if(loaiTien == 3)
+							 cout  << setw(15) <<  "USD"<< "|\n";
 		}
 		
 		int getLoai()
@@ -209,7 +216,7 @@ class GiaoDichTien : public GiaoDich
 void line()
 {
 	cout << "+";
-	for(int i = 0; i < 100; i++)
+	for(int i = 0; i < 116; i++)
 	cout << "-";
 	cout << "+\n";
 }
@@ -248,16 +255,35 @@ class QuanLyGiaoDich
 		
 		void inDanhSach()
 		{
+			cout << "\n\t\tDanh sach giao dich vang\n";
 			line();
 			cout  << left << "|" << setw(15) << "Ma" << "|"
 							  << setw(10)<< "Ngay"<< "|"
 							  << setw(15) << "Don gia" << "|"
 							  << setw(15) << "So luong" << "|"
 							  << setw(20) << "Thanh tien" << "|"
-							  << setw(20) << "Loai giao dich" << "|\n";
+							  << setw(20) << "Loai giao dich" << "|" 
+							  << setw(15) << "Loai vang" << "|\n";
 			line();
 			for(auto gd : giaoDich)
 			{
+				if(gd->getLoai() == 1)
+				cout << *gd;
+			}
+			line();
+			cout << "\n\t\tDanh sach giao dich tien te\n";
+			line();
+			cout  << left << "|" << setw(15) << "Ma" << "|"
+							  << setw(10)<< "Ngay"<< "|"
+							  << setw(15) << "Don gia" << "|"
+							  << setw(15) << "So luong" << "|"
+							  << setw(20) << "Thanh tien" << "|"
+							  << setw(20) << "Loai giao dich" << "|" 
+							  << setw(15) << "Loai tien" << "|\n";
+			line();
+			for(auto gd : giaoDich)
+			{
+				if(gd->getLoai() == 2)
 				cout << *gd;
 			}
 			line();
@@ -359,22 +385,20 @@ class QuanLyGiaoDich
 		}
 		void xuatGiaoDichTren1Ty()
 		{
-			cout << "\n\t\t\Danh sach cac giao dich co dong gia tren 1 ty : \n";
+			cout << "\n\t\tDanh sach giao dich vang tren 1 ty\n";
 			line();
 			cout  << left << "|" << setw(15) << "Ma" << "|"
 							  << setw(10)<< "Ngay"<< "|"
 							  << setw(15) << "Don gia" << "|"
 							  << setw(15) << "So luong" << "|"
 							  << setw(20) << "Thanh tien" << "|"
-							  << setw(20) << "Loai giao dich" << "|\n";
+							  << setw(20) << "Loai giao dich" << "|" 
+							  << setw(15) << "Loai vang" << "|\n";
 			line();
-			for(auto giaodich : giaoDich)
+			for(auto gd : giaoDich)
 			{
-				if(giaodich->getDonGia() > 1e9)
-				{
-					cout << *giaodich;
-					
-				}
+				if(gd->getLoai() == 1 && gd->getDonGia() > 1e6)
+				cout << *gd;
 			}
 			line();
 		}
